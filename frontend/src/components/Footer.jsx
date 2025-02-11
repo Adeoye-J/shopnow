@@ -15,7 +15,7 @@ const Footer = () => {
 
                 <div className="">
                     <p className='text-xl font-medium mb-5'>COMPANY</p>
-                    <ul className='flex flex-col gap-2 text-gray-400'>
+                    <ul className='flex flex-col gap-2 text-gray-600'>
                         <li>Home</li>
                         <li>About Us</li>
                         <li>Delivery</li>
@@ -25,7 +25,7 @@ const Footer = () => {
 
                 <div className="">
                     <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
-                    <ul className='flex flex-col gap-2 text-gray-400'>
+                    <ul className='flex flex-col gap-2 text-gray-600'>
                         <li>+234-815-0420-521</li>
                         <li>contact@shopnow.com</li>
                     </ul>
