@@ -1,18 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { assets } from '../assets/assets'
+import Title from '../components/Title'
+import ProductItem from '../components/ProductItem'
 
 const Collection = () => {
 
     const {products, currency} = useContext(ShopContext)
     const [showFilter, setShowFilter] = useState(false)
+    const [filteredProducts, setFilteredProducts] = useState([])
+
+    useEffect(() => {
+        setFilteredProducts(products)
+    }, [])
 
     return (
         <div className='flex flex-cols sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
             
             {/* Filter Options */}
             <div className="min-w-60">
-                <p className='my-2 text-xl flex items-center cursor-pointer gap-2'>
+                <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>
                     FILTERS
                     <img className={`h-3 sm:hidden ${showFilter ? "rotate-90" : ""}`} src={assets.dropdown_icon} alt="" />
                 </p>
@@ -49,6 +56,33 @@ const Collection = () => {
                     </div>
                 </div>
 
+            </div>
+
+
+            {/* Main Section */}
+
+            <div className="flex-1">
+
+                <div className="flex justify-between text-base sm:text-2xl mb-4">
+                    <Title text1={"ALL"} text2={"COLLECTIONS"} />
+
+                    {/* Product Sort */}
+                    <select className='border-2 border-gray-300 text-sm px-2' name="" id="">
+                        <option value="relevant">Sort by: Relevance</option>
+                        <option value="low-high">Sort by: Low to High</option>
+                        <option value="high-low">Sort by: High to Low</option>
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                {/* Products View */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
+                    {
+                        filteredProducts.map((item, index) => (
+                            <ProductItem key={index} id={item._id} price={item.price} image={item.image} name={item.name} />
+                        ))
+                    }
+                </div>
             </div>
         </div>
     )
