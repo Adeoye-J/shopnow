@@ -14,8 +14,7 @@ const LatestCollection = () => {
         // setLatestProducts(latest)
 
         setLatestProducts(products.slice(0, 10))
-    }
-    , [products])
+    }, [products])
 
     return (
         <div className='my-10'>
